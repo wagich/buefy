@@ -8,6 +8,10 @@ export default {
         rounded: Boolean,
         icon: String,
         iconPack: String,
+        validate: {
+            type: Boolean,
+            default: true
+        },
 
         // Native options to use in HTML5 validation
         autocomplete: String,
@@ -78,7 +82,9 @@ export default {
         onBlur($event) {
             this.isFocused = false
             this.$emit('blur', $event)
-            this.checkHtml5Validity()
+            if (this.validate) {
+                this.checkHtml5Validity()
+            }
         },
 
         onFocus($event) {

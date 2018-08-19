@@ -75,7 +75,8 @@
             hasCounter: {
                 type: Boolean,
                 default: true
-            }
+            },
+            inputClass: String
         },
         data() {
             return {
@@ -102,6 +103,7 @@
             },
             inputClasses() {
                 return [
+                    this.inputClass,
                     this.statusType,
                     this.size,
                     { 'is-rounded': this.rounded }
@@ -177,7 +179,9 @@
              */
             newValue(value) {
                 this.$emit('input', value)
-                !this.isValid && this.checkHtml5Validity()
+                if (this.validate) {
+                    !this.isValid && this.checkHtml5Validity()
+                }
             }
         },
         methods: {
